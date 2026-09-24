@@ -1,132 +1,115 @@
 <div align="center">
 
-  <img src="public/images/logo.jpg" alt="Pangly Logo" width="100" style="border-radius: 20px;" />
+  <img src="public/images/pangly_phone_ad_banner.jpg" alt="Pangly Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px;" />
 
-  # Pangly Official Website
-  **The Zero-Cloud, On-Device Document Vault & Offline Assistant for the Philippines**
-
-  [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)](https://nextjs.org/)
-  [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
-  [![Framer Motion](https://img.shields.io/badge/Framer_Motion-12-0055FF?style=flat-square&logo=framer)](https://www.framer.com/motion/)
-  [![Release](https://img.shields.io/badge/Release-v1.3.20_APK-2D6A4F?style=flat-square)](https://github.com/JavierSiliacay/pangly-website/releases)
+  # Pangly
+  **Your Private Philippine Document Vault and Offline Assistant**
 
   <p align="center">
-    <a href="#about-the-project">About</a> •
-    <a href="#key-features">Features</a> •
-    <a href="#tech-stack">Tech Stack</a> •
-    <a href="#project-structure">Project Structure</a> •
-    <a href="#getting-started">Getting Started</a> •
-    <a href="#apk-distribution">APK Distribution</a> •
-    <a href="#deployment">Deployment</a>
+    <a href="#what-is-pangly">What is Pangly?</a> •
+    <a href="#key-features">Key Features</a> •
+    <a href="#why-zero-cloud-matters">Why Zero-Cloud?</a> •
+    <a href="#how-to-install">How to Install</a> •
+    <a href="#frequently-asked-questions">FAQ</a>
   </p>
 
 </div>
 
 ---
 
-## About the Project
+## What is Pangly?
 
-The official web portal and early-access pilot distribution platform for **Pangly** — an on-device, private document manager built specifically for Philippine IDs and documents with local AI processing and zero-cloud architecture.
+Tired of digging through hundreds of photos in your gallery every time you need your PhilID, Driver's License, or SSS number at a bank or government office?
 
-### Website Capabilities:
-* **Interactive Live Demo**: An in-browser simulated document vault and chat assistant allowing visitors to test Pangly's user experience before downloading.
-* **Pilot Quota & Slot Claiming**: A dynamic 100-tester early access slot issuing system with duplicate detection and client token persistence.
-* **Direct APK Distribution**: Streamlined APK delivery connected to GitHub Releases without third-party app store friction.
-* **Step-by-Step Sideloading Guide**: Visual installation guide tailored for Android users.
-* **Security & Architecture Comparison**: Breakdown against conventional cloud-based password and document managers.
+**Pangly** is a fast, secure, and private mobile app designed specifically for Filipinos. It organizes your Philippine IDs, documents, and passwords into an encrypted vault stored directly on your phone — with **zero cloud uploads** and **no internet required**.
+
+<div align="center">
+  <img src="public/images/pangly_hero_phone_leaning.png" alt="Pangly App Preview" width="480" />
+</div>
 
 ---
 
 ## Key Features
 
-| Module | Purpose |
+### 1. Tailored for Philippine Documents
+Easily store, view, and organize all your essential identification cards and papers in one place:
+* **Government IDs:** PhilID (National ID), Driver’s License, Passport, PRC ID, SSS, PhilHealth, UMID, Postal ID, Voter's ID.
+* **Family & Benefits:** Senior Citizen and PWD booklets, medicine discount tracking.
+* **Vehicles & Legal:** LTO OR/CR vehicle registrations, insurance policies, and billing statements.
+* **Automatic Text Reading (OCR):** Pangly reads the numbers from your cards so you can copy and paste your ID numbers with a single tap.
+
+<div align="center">
+  <img src="public/images/pangly_phone_ad.jpg" alt="Philippine Documents in Pangly" width="520" style="border-radius: 12px; margin: 15px 0;" />
+</div>
+
+---
+
+### 2. Built-in Offline AI Assistant
+Ask questions in plain English or Taglish about your stored documents and get instant answers — even on airplane mode or during power outages:
+* *"What is my driver's license expiration date?"*
+* *"What is the plate number and chassis number on my LTO registration?"*
+* *"Show my SSS number for my employer."*
+
+Because the AI runs entirely on your phone's hardware, your questions and documents are **never** sent to any external server.
+
+<div align="center">
+  <img src="public/images/pangly_pose_thinking.png" alt="Pangly Offline AI Assistant" width="220" />
+</div>
+
+---
+
+### 3. Zero-Cloud Security
+Unlike traditional password managers and cloud backup drives that upload your sensitive documents to foreign servers:
+* **100% Stored on Your Phone:** Your files never leave your device.
+* **Biometric Protection:** Locked behind your fingerprint or Face Unlock.
+* **Bank-Grade Encryption:** Protected with AES-256 encryption using your phone's secure hardware chip.
+
+<div align="center">
+  <img src="public/images/pangly_pose_shield.png" alt="Pangly Security Shield" width="220" />
+</div>
+
+---
+
+## Why Zero-Cloud Matters
+
+| Traditional Cloud Apps | Pangly |
 | :--- | :--- |
-| **Philippine Document Vault** | Highlights auto-OCR and high-resolution indexing for PhilID, Passports, PRC, SSS, Senior/PWD booklets, and LTO OR/CR. |
-| **On-Device AI Engine** | Explains 100% offline local neural query processing with zero telemetry. |
-| **Zero-Cloud Keystore** | Explains Android Hardware Keystore AES-256 local database encryption. |
-| **Slot Allocation Engine** | REST API (`/api/slots`) managing real-time slots, browser tokens, and re-download capability. |
-| **Sideloading Guide** | Clear step-by-step visual aid for Android direct package installations. |
+| Uploads your sensitive IDs to public servers | Files stay 100% inside your phone's memory |
+| Risk of corporate data leaks and identity theft | Zero servers to hack — you own your data |
+| Requires continuous internet or monthly subscription | Works completely offline without any fees |
+| Sells data or collects tracking analytics | Zero tracking, zero telemetry, zero ads |
 
 ---
 
-## Tech Stack
+## How to Install (Android)
 
-* **Framework:** Next.js (App Router, Server Components & Route Handlers)
-* **Language:** TypeScript
-* **Styling:** Custom CSS Design System with warm earthy palette (`#2D6A4F`, `#F5F1EB`, `#E76F51`)
-* **Animations:** Framer Motion & Lucide Icons
-* **Data Persistence:** Atomic JSON-based slot state manager (`src/lib/slotStorage.ts`)
+Installing Pangly is simple and takes less than a minute:
 
----
+1. **Download the App:** Tap the **Download APK** button on the Pangly website or download the latest package from our [Releases page](https://github.com/JavierSiliacay/pangly-website/releases).
+2. **Tap "Download Anyway":** Android displays a standard security notice for apps downloaded directly outside Google Play. Tap **Download anyway**.
+3. **Open & Install:** Tap the finished download from your notification bar, enable **"Allow from this source"** if prompted, and tap **Install**.
+4. **Set Up Biometrics:** Open Pangly and enable Fingerprint or PIN security to start adding your IDs safely.
 
-## Project Structure
-
-```text
-pangly-website/
-├── public/
-│   ├── images/          # Product visual mockups, mascots, and UI assets
-│   ├── sounds/          # Interactive audio feedback
-│   └── downloads/       # Local APK placeholder (git-ignored)
-├── src/
-│   ├── app/
-│   │   ├── api/
-│   │   │   ├── download/   # Direct APK download redirect handler
-│   │   │   └── slots/      # Real-time slot allocation & token verification
-│   │   ├── globals.css     # Design tokens, typography, and responsive utilities
-│   │   ├── layout.tsx      # SEO metadata, OpenGraph tags, and layout shell
-│   │   └── page.tsx        # Main landing page composition
-│   ├── components/         # Hero, Navbar, InteractiveDemo, FeatureTour, etc.
-│   └── lib/                # Slot storage management logic
-└── README.md
-```
+<div align="center">
+  <img src="public/images/pangly_pose_celebrate.png" alt="Pangly Ready" width="200" />
+</div>
 
 ---
 
-## Getting Started
+## Frequently Asked Questions
 
-### 1. Prerequisites
-* **Node.js**: `v18.18.0` or higher
-* **Package Manager**: `npm`, `pnpm`, or `yarn`
+#### Is Pangly really 100% private?
+Yes. Pangly was built from the ground up with a zero-cloud philosophy. It does not have remote databases, does not require an email registration, and does not upload your scanned cards anywhere.
 
-### 2. Installation
-```bash
-git clone https://github.com/JavierSiliacay/pangly-website.git
-cd pangly-website
-npm install
-```
+#### Does it work without Wi-Fi or data?
+Yes. All scanning, optical character recognition (OCR), encrypted storage, and AI question-answering happen locally on your smartphone processor.
 
-### 3. Environment Variables (Optional)
-To customize the APK release URL, create a `.env.local` file:
-```env
-NEXT_PUBLIC_APK_DOWNLOAD_URL="https://github.com/JavierSiliacay/pangly-website/releases/download/v1.3.20/Pangly_v1.3.20.apk"
-```
-
-### 4. Running Locally
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) to view the site.
-
----
-
-## APK Distribution
-
-Because GitHub repositories enforce a 100 MB limit per commit, the **226 MB** APK binary is distributed via **GitHub Releases**:
-1. Releases are published under the repository's `Releases` tab with tag `v1.3.20`.
-2. When users click **"Claim Slot & Download"** on the website, `/api/download` silently redirects to the release binary asset directly.
-3. Users receive an instant 1-click download directly in their browser without leaving the website.
-
----
-
-## Deployment
-
-Deploy to **Vercel**:
-1. Import this GitHub repository into [Vercel](https://vercel.com).
-2. Configure any optional environment variables (`NEXT_PUBLIC_APK_DOWNLOAD_URL`).
-3. Click **Deploy**.
+#### Why is the app provided as an APK download?
+During our early pilot release, we distribute Pangly directly to our early community testers to ensure quick updates and direct feedback without third-party app store delays.
 
 ---
 
 <div align="center">
-  <sub>Pangly — Zero-cloud document security for the Philippines.</sub>
+  <img src="public/images/logo.jpg" alt="Pangly Logo" width="80" style="border-radius: 16px; margin-top: 10px;" />
+  <p><strong>Pangly — Private, smart, and built for the Philippines.</strong></p>
 </div>
