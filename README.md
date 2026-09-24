@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="public/images/pangly_phone_ad_banner.jpg" alt="Pangly Banner" width="100%" style="border-radius: 12px; margin-bottom: 20px;" />
+  <img src="public/images/icon.png" alt="Pangly Icon" width="110" style="border-radius: 24px; margin-bottom: 12px;" />
 
   # Pangly
   **Your Private Philippine Document Vault and Offline Assistant**
