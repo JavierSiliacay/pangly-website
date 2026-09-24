@@ -53,7 +53,7 @@ Ask questions in plain English or Taglish about your stored documents and get in
 Because the AI runs entirely on your phone's hardware, your questions and documents are **never** sent to any external server.
 
 <div align="center">
-  <img src="public/images/pangly_pose_thinking.png" alt="Pangly Offline AI Assistant" width="220" />
+  <img src="public/images/pangly_thinking.gif" alt="Pangly Offline AI Assistant" width="220" />
 </div>
 
 ---
