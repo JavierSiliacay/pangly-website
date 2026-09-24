@@ -110,6 +110,6 @@ During our early pilot release, we distribute Pangly directly to our early commu
 ---
 
 <div align="center">
-  <img src="public/images/logo.jpg" alt="Pangly Logo" width="80" style="border-radius: 16px; margin-top: 10px;" />
+  <img src="public/images/icon.png" alt="Pangly Logo" width="64" style="border-radius: 14px; margin-top: 10px;" />
   <p><strong>Pangly — Private, smart, and built for the Philippines.</strong></p>
 </div>
