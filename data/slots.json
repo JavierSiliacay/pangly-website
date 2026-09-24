@@ -1,0 +1,13 @@
+{
+  "maxSlots": 100,
+  "claimed": [
+    {
+      "slot": 1,
+      "token": "pangly_pilot_9bda0c7f-69f3-4329-adf8-10440fa8834c",
+      "ipHash": "eff8e7ca506627fe",
+      "claimedAt": "2026-09-24T05:23:07.779Z",
+      "downloadsCount": 2,
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36"
+    }
+  ]
+}
