@@ -65,7 +65,7 @@ Unlike traditional password managers and cloud backup drives that upload your se
 * **Bank-Grade Encryption:** Protected with AES-256 encryption using your phone's secure hardware chip.
 
 <div align="center">
-  <img src="public/images/pangly_pose_shield.png" alt="Pangly Security Shield" width="220" />
+  <img src="public/images/pangly_shield.gif" alt="Pangly Security Shield" width="220" />
 </div>
 
 ---
@@ -91,7 +91,7 @@ Installing Pangly is simple and takes less than a minute:
 4. **Set Up Biometrics:** Open Pangly and enable Fingerprint or PIN security to start adding your IDs safely.
 
 <div align="center">
-  <img src="public/images/pangly_pose_celebrate.png" alt="Pangly Ready" width="200" />
+  <img src="public/images/pangly_celebrate.gif" alt="Pangly Ready" width="200" />
 </div>
 
 ---
