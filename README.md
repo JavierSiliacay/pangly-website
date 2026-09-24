@@ -3,7 +3,7 @@
   <img src="public/images/icon.png" alt="Pangly Icon" width="110" style="border-radius: 24px; margin-bottom: 12px;" />
 
   # Pangly
-  **Your Private Philippine Document Vault and Offline Assistant**
+  **Store it. Ask it. Own it**
 
   <p align="center">
     <a href="#what-is-pangly">What is Pangly?</a> •
