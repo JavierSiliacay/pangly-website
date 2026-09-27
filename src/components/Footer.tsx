@@ -74,7 +74,7 @@ export const Footer: React.FC = () => {
               <span>Direct APK (v1.3.20)</span>
             </a>
             <p style={{ fontSize: '0.75rem', color: '#57534E', marginTop: '10px', fontWeight: 600 }}>
-              SHA-256 verified package • 226 MB
+              Android 8.0+ • 226 MB • Safe APK
             </p>
           </div>
 
