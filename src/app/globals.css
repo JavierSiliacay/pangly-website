@@ -208,7 +208,8 @@ p {
 }
 
 @media (max-width: 768px) {
-  .desktop-nav {
+  .desktop-nav,
+  .desktop-cta {
     display: none !important;
   }
   .mobile-toggle {

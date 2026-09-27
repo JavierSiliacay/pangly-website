@@ -42,7 +42,7 @@ export const Footer: React.FC = () => {
             <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#292524', marginBottom: '16px' }}>Community & Creator</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.88rem' }}>
               <a 
-                href="https://facebook.com/Pangly" 
+                href="https://facebook.com/PanglyApp" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 style={{ 

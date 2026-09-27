@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Download, ShieldCheck, Cpu, Lock, CheckCircle2, AlertCircle, ArrowDown } from 'lucide-react';
+import { SlotLimitModal } from './SlotLimitModal';
 
 interface HeroProps {
   initialSlots?: number;
@@ -15,6 +16,7 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
   const [mySlot, setMySlot] = useState<number | null>(null);
   const [isDownloading, setIsDownloading] = useState(false);
   const [isFull, setIsFull] = useState(false);
+  const [showFullModal, setShowFullModal] = useState(false);
 
   useEffect(() => {
     // 1. Check local storage first
@@ -43,7 +45,10 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
         }
         if (data.isFull) {
           setIsFull(true);
+        } else {
+          setIsFull(false);
         }
+
         if (data.mySlot) {
           setMySlot(data.mySlot);
           try {
@@ -51,6 +56,12 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
             if (data.token) {
               localStorage.setItem('pangly_slot_token', data.token);
             }
+          } catch {}
+        } else {
+          setMySlot(null);
+          try {
+            localStorage.removeItem('pangly_slot_number');
+            localStorage.removeItem('pangly_slot_token');
           } catch {}
         }
       } catch (err) {
@@ -62,6 +73,11 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
   }, []);
 
   const handleDownload = async () => {
+    if (isFull && !mySlot) {
+      setShowFullModal(true);
+      return;
+    }
+
     setIsDownloading(true);
 
     try {
@@ -86,25 +102,26 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
             localStorage.setItem('pangly_slot_token', data.token);
           }
         } catch {}
+
+        // Trigger direct APK download
+        const apkUrl = process.env.NEXT_PUBLIC_APK_DOWNLOAD_URL || '/downloads/Pangly_v1.3.20.apk';
+        const link = document.createElement('a');
+        link.href = apkUrl;
+        link.download = 'Pangly_v1.3.20.apk';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       } else if (data.isFull) {
         setIsFull(true);
+        setShowFullModal(true);
       }
     } catch (err) {
       console.error('Error claiming slot:', err);
+    } finally {
+      setTimeout(() => {
+        setIsDownloading(false);
+      }, 1200);
     }
-
-    // Trigger direct APK download
-    const apkUrl = process.env.NEXT_PUBLIC_APK_DOWNLOAD_URL || '/downloads/Pangly_v1.3.20.apk';
-    const link = document.createElement('a');
-    link.href = apkUrl;
-    link.download = 'Pangly_v1.3.20.apk';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-
-    setTimeout(() => {
-      setIsDownloading(false);
-    }, 1200);
   };
 
   const percentage = Math.min(100, Math.round((claimedSlots / 100) * 100));
@@ -159,9 +176,9 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
               className="card-white" 
-              style={{ padding: '22px 24px', marginBottom: '28px', maxWidth: '520px', border: '1px solid #DDD5C7' }}
+              style={{ padding: '18px 20px', marginBottom: '24px', maxWidth: '520px', border: '1px solid #DDD5C7' }}
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '8px', marginBottom: '10px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <ShieldCheck size={18} color="#2D6A4F" />
                   <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#292524' }}>Real-Time Pilot Quota</span>
@@ -196,7 +213,7 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
               ) : isFull ? (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem', color: '#BE123C' }}>
                   <AlertCircle size={15} color="#BE123C" />
-                  <span>Pilot quota is full (100/100). Next batch opening soon.</span>
+                  <span>Pilot quota is full (100/100). Follow our Facebook page for updates.</span>
                 </div>
               ) : (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.8rem', color: '#57534E' }}>
@@ -212,7 +229,7 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
               id="download-section" 
-              style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', alignItems: 'center', marginBottom: '24px' }}
+              style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', alignItems: 'center', marginBottom: '24px' }}
             >
               <motion.button 
                 whileHover={{ scale: 1.02 }}
@@ -220,9 +237,15 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
                 onClick={handleDownload}
                 disabled={isDownloading}
                 className="btn-primary" 
-                style={{ padding: '16px 28px', fontSize: '1.05rem', fontWeight: 700 }}
+                style={{ 
+                  padding: '13px 22px', 
+                  fontSize: '0.92rem', 
+                  fontWeight: 700,
+                  backgroundColor: (isFull && !mySlot) ? '#B45309' : undefined,
+                  boxShadow: (isFull && !mySlot) ? '0 6px 18px rgba(180, 83, 9, 0.2)' : undefined,
+                }}
               >
-                <Download size={20} className={isDownloading ? 'spin' : ''} />
+                <Download size={18} className={isDownloading ? 'spin' : ''} />
                 <span>
                   {mySlot ? `Re-download APK (Slot #${mySlot})` : isFull ? 'Pilot Full (100/100)' : 'Claim Slot & Download APK'}
                 </span>
@@ -233,10 +256,10 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
                 whileTap={{ scale: 0.98 }}
                 href="#interactive-demo" 
                 className="btn-secondary" 
-                style={{ padding: '16px 24px', fontSize: '1rem', textDecoration: 'none' }}
+                style={{ padding: '13px 20px', fontSize: '0.92rem', textDecoration: 'none' }}
               >
                 <span>Try Live Demo</span>
-                <ArrowDown size={18} />
+                <ArrowDown size={16} />
               </motion.a>
             </motion.div>
 
@@ -395,6 +418,12 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
 
         </div>
       </div>
+
+      {/* Early Access Quota Full Modal */}
+      <SlotLimitModal 
+        isOpen={showFullModal} 
+        onClose={() => setShowFullModal(false)} 
+      />
     </section>
   );
 };

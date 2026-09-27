@@ -90,7 +90,7 @@ export const Navbar: React.FC<NavbarProps> = ({ initialSlots = 0 }) => {
             <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#2D6A4F' }}>{claimedSlots}/100 Slots</span>
           </div>
 
-          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
+          <motion.div className="desktop-cta" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
             <Link href="#download-section" className="btn-primary" style={{ padding: '10px 20px', fontSize: '0.875rem' }}>
               <Download size={16} />
               <span>Download APK</span>
