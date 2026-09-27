@@ -12,8 +12,8 @@ interface FaqItem {
 
 const FAQS: FaqItem[] = [
   {
-    question: "Why is the Pangly APK download size 226 MB?",
-    answer: "Unlike web wrappers that require an internet connection, Pangly embeds the complete native on-device AI runtime and neural network model bundle directly into the app. Once installed, it will work forever without ever using your mobile data or Wi-Fi."
+    question: "How much storage space does Pangly need on my phone?",
+    answer: "The direct APK download is 226 MB. Once installed, Pangly occupies ~398 MB of internal storage because it bundles the complete native neural network and on-device AI runtime with zero cloud dependencies. After installation is complete, you can safely delete the downloaded .apk installer file to free up space."
   },
   {
     question: "Can anyone else—including Pangly’s developers—see my files?",
