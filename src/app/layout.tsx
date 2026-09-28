@@ -2,7 +2,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pangly.vercel.app';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pangly.site';
 
 export const viewport: Viewport = {
   themeColor: '#1B4332',
