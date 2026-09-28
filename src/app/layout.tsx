@@ -178,6 +178,55 @@ const jsonLdWebSite = {
   },
 };
 
+const jsonLdSitelinks = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: [
+    {
+      '@type': 'SiteNavigationElement',
+      position: 1,
+      name: 'Features & AI Capabilities',
+      description: 'Explore on-device document extraction, intelligent offline query, and privacy vault.',
+      url: `${siteUrl}#features`,
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      position: 2,
+      name: 'Live Interactive Demo',
+      description: 'Simulate private on-device document scanning and biometric vault access.',
+      url: `${siteUrl}#interactive-demo`,
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      position: 3,
+      name: 'Zero-Cloud Security',
+      description: 'Compare offline hardware encryption and biometric Keystore vs cloud databases.',
+      url: `${siteUrl}#security`,
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      position: 4,
+      name: 'APK Install Guide',
+      description: 'Step-by-step sideloading and security installation instructions for Android.',
+      url: `${siteUrl}#install-guide`,
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      position: 5,
+      name: 'Download Official APK',
+      description: 'Claim your Early Access slot and download the official Pangly v1.3.20 APK.',
+      url: `${siteUrl}#download-section`,
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      position: 6,
+      name: 'Frequently Asked Questions',
+      description: 'Learn about storage requirements, device compatibility, and offline recovery.',
+      url: `${siteUrl}#faq`,
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -203,6 +252,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdSitelinks) }}
         />
       </head>
       <body>{children}</body>

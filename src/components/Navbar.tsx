@@ -75,12 +75,12 @@ export const Navbar: React.FC<NavbarProps> = ({ initialSlots = 0 }) => {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: '32px' }} className="desktop-nav">
-          <Link href="#features" style={{ color: '#57534E', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, transition: 'color 0.2s' }}>Features</Link>
-          <Link href="#interactive-demo" style={{ color: '#57534E', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, transition: 'color 0.2s' }}>Live Demo</Link>
-          <Link href="#security" style={{ color: '#57534E', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, transition: 'color 0.2s' }}>Security</Link>
-          <Link href="#install-guide" style={{ color: '#57534E', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, transition: 'color 0.2s' }}>Install Guide</Link>
-          <Link href="#faq" style={{ color: '#57534E', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, transition: 'color 0.2s' }}>FAQ</Link>
+        <nav aria-label="Primary Navigation" style={{ display: 'flex', alignItems: 'center', gap: '32px' }} className="desktop-nav">
+          <Link href="#features" title="Pangly Features & AI Capabilities" style={{ color: '#57534E', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, transition: 'color 0.2s' }}>Features</Link>
+          <Link href="#interactive-demo" title="Interactive Simulator & Demo" style={{ color: '#57534E', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, transition: 'color 0.2s' }}>Live Demo</Link>
+          <Link href="#security" title="Zero-Cloud Security Architecture" style={{ color: '#57534E', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, transition: 'color 0.2s' }}>Security</Link>
+          <Link href="#install-guide" title="Android APK Installation Guide" style={{ color: '#57534E', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, transition: 'color 0.2s' }}>Install Guide</Link>
+          <Link href="#faq" title="Frequently Asked Questions" style={{ color: '#57534E', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, transition: 'color 0.2s' }}>FAQ</Link>
         </nav>
 
         {/* CTA Slot Action */}
