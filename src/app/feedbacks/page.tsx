@@ -1355,7 +1355,7 @@ export default function FeedbacksPage() {
                     />
                   </div>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#2D6A4F', marginBottom: '8px' }}>
-                    {editingId ? 'Changes Saved! 🇵🇭' : 'Maraming Salamat! 🇵🇭'}
+                    {editingId ? 'Changes Saved! 🇵🇭' : 'Maraming Salamat!'}
                   </h3>
                   <p style={{ fontSize: '0.88rem', color: '#57534E', margin: 0, lineHeight: 1.55 }}>
                     {editingId 
