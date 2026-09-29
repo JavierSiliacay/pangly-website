@@ -19,6 +19,22 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
   const [showFullModal, setShowFullModal] = useState(false);
 
   useEffect(() => {
+    // Check if user requested a session reset
+    if (typeof window !== 'undefined' && window.location.search.includes('reset=true')) {
+      try {
+        localStorage.removeItem('pangly_slot_number');
+        localStorage.removeItem('pangly_slot_token');
+        document.cookie = 'pangly_slot_token=; path=/; max-age=0;';
+        window.location.replace('/');
+        return;
+      } catch {}
+    }
+
+    // Check if redirected due to quota limit
+    if (typeof window !== 'undefined' && window.location.search.includes('quota_full=true')) {
+      setShowFullModal(true);
+    }
+
     // 1. Check local storage first
     try {
       const savedSlot = localStorage.getItem('pangly_slot_number');
@@ -42,6 +58,9 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
         
         if (typeof data.totalClaimed === 'number') {
           setClaimedSlots(data.totalClaimed);
+          if (typeof window !== 'undefined') {
+            window.dispatchEvent(new CustomEvent('pangly_slot_update', { detail: data.totalClaimed }));
+          }
         }
         if (data.isFull) {
           setIsFull(true);
@@ -69,7 +88,24 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
       }
     };
 
+    // Initial sync
     syncSlots();
+
+    // Real-time background sync (every 4 seconds only if user is actively viewing page)
+    const interval = setInterval(() => {
+      if (typeof document !== 'undefined' && document.visibilityState === 'visible') {
+        syncSlots();
+      }
+    }, 4000);
+
+    // Refresh immediately when user returns to this tab
+    const handleFocus = () => syncSlots();
+    window.addEventListener('focus', handleFocus);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('focus', handleFocus);
+    };
   }, []);
 
   const handleDownload = async () => {
@@ -104,7 +140,9 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
         } catch {}
 
         // Trigger direct APK download
-        const apkUrl = process.env.NEXT_PUBLIC_APK_DOWNLOAD_URL || '/downloads/Pangly_v1.3.20.apk';
+        const apkUrl =
+          process.env.NEXT_PUBLIC_APK_DOWNLOAD_URL ||
+          'https://github.com/JavierSiliacay/pangly-website/releases/download/v1.3.20/Pangly-v1.3.20.apk';
         const link = document.createElement('a');
         link.href = apkUrl;
         link.download = 'Pangly_v1.3.20.apk';
@@ -134,7 +172,7 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
       <div style={{ position: 'absolute', top: '40%', right: '10%', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(180, 83, 9, 0.06) 0%, rgba(245, 241, 235, 0) 70%)', filter: 'blur(40px)', pointerEvents: 'none', zIndex: 0 }} />
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '48px', alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '40px', alignItems: 'center' }}>
           
           {/* LEFT COLUMN: Staggered Entrance */}
           <div>
@@ -326,20 +364,7 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
                   scale: { duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] },
                   y: { duration: 4.2, repeat: Infinity, ease: 'easeInOut', delay: 1.15 }
                 }}
-                style={{ 
-                  position: 'absolute', 
-                  top: '12%', 
-                  left: '-20px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '10px', 
-                  padding: '10px 16px', 
-                  background: '#FFFFFF', 
-                  border: '1px solid #DDD5C7', 
-                  borderRadius: '16px',
-                  boxShadow: '0 12px 28px rgba(41, 37, 36, 0.12)',
-                  zIndex: 2
-                }}
+                className="hero-floating-pill-left"
               >
                 <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(45, 106, 79, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Cpu size={18} color="#2D6A4F" />
@@ -363,20 +388,7 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
                   scale: { duration: 0.8, delay: 0.65, ease: [0.16, 1, 0.3, 1] },
                   y: { duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 1.45 }
                 }}
-                style={{ 
-                  position: 'absolute', 
-                  bottom: '18%', 
-                  right: '-16px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '10px', 
-                  padding: '10px 16px', 
-                  background: '#FFFFFF', 
-                  border: '1px solid #DDD5C7', 
-                  borderRadius: '16px',
-                  boxShadow: '0 12px 28px rgba(41, 37, 36, 0.12)',
-                  zIndex: 2
-                }}
+                className="hero-floating-pill-right"
               >
                 <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'rgba(180, 83, 9, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Lock size={18} color="#B45309" />

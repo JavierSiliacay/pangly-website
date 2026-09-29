@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
   const token = req.cookies.get('pangly_slot_token')?.value || req.headers.get('x-slot-token');
   const ip = getClientIp(req);
 
-  const status = getSlotStatus(token, ip);
+  const status = await getSlotStatus(token, ip);
   return NextResponse.json(status);
 }
 
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
   const ip = getClientIp(req);
   const userAgent = req.headers.get('user-agent') || undefined;
 
-  const result = claimSlot(token, ip, userAgent);
+  const result = await claimSlot(token, ip, userAgent);
 
   const res = NextResponse.json(result);
 

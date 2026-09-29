@@ -152,7 +152,7 @@ export const InteractiveDemo: React.FC = () => {
         >
           
           {/* Header Bar */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 24px', borderBottom: '1px solid #EAE4D9', background: '#F5F1EB' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', borderBottom: '1px solid #EAE4D9', background: '#F5F1EB', flexWrap: 'wrap', gap: '10px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <div style={{ width: '38px', height: '38px', borderRadius: '10px', overflow: 'hidden', position: 'relative', border: '1px solid #DDD5C7' }}>
                 <Image src="/images/icon.png" sizes="38px" alt="Pangly" fill style={{ objectFit: 'cover' }} />

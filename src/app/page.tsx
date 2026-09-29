@@ -7,12 +7,13 @@ import { SecurityComparison } from '@/components/SecurityComparison';
 import { SideloadGuide } from '@/components/SideloadGuide';
 import { FaqSection } from '@/components/FaqSection';
 import { Footer } from '@/components/Footer';
+import { FeedbackWidget } from '@/components/FeedbackWidget';
 import { getSlotStatus } from '@/lib/slotStorage';
 
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  const slotStatus = getSlotStatus();
+  const slotStatus = await getSlotStatus();
 
   return (
     <main style={{ minHeight: '100vh', backgroundColor: '#F5F1EB', color: '#292524' }}>
@@ -24,6 +25,7 @@ export default async function Home() {
       <SideloadGuide />
       <FaqSection />
       <Footer />
+      <FeedbackWidget />
     </main>
   );
 }

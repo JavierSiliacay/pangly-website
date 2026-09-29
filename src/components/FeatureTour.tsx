@@ -107,31 +107,38 @@ export const FeatureTour: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Tab Navigation with Animated Gliding Pill */}
-        <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '40px' }}>
+        {/* Tab Navigation with Animated Gliding Pill (Swipeable on Mobile) */}
+        <div className="feature-tabs-scroll" role="tablist">
           {TABS.map((tab) => {
             const active = tab.id === activeTab.id;
             return (
               <motion.button
                 key={tab.id}
+                role="tab"
+                aria-selected={active}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                onClick={() => setActiveTab(tab)}
+                onClick={(e) => {
+                  setActiveTab(tab);
+                  e.currentTarget.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+                }}
+                className="feature-tab-btn"
                 style={{
                   position: 'relative',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '10px',
-                  padding: '12px 20px',
+                  gap: '8px',
+                  padding: '12px 18px',
                   borderRadius: '14px',
-                  fontSize: '0.9rem',
+                  fontSize: '0.88rem',
                   fontWeight: 700,
                   cursor: 'pointer',
                   border: active ? '1px solid #2D6A4F' : '1px solid #DDD5C7',
                   background: active ? '#2D6A4F' : '#FFFFFF',
                   color: active ? '#FFFFFF' : '#57534E',
                   boxShadow: active ? '0 8px 20px rgba(45, 106, 79, 0.25)' : '0 2px 6px rgba(41, 37, 36, 0.05)',
-                  transition: 'all 0.2s ease'
+                  transition: 'all 0.2s ease',
+                  whiteSpace: 'nowrap',
                 }}
               >
                 {tab.icon}
@@ -152,22 +159,29 @@ export const FeatureTour: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -16 }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="card-white" 
-            style={{ padding: '40px', border: '1px solid #DDD5C7', borderRadius: '28px', boxShadow: '0 20px 40px rgba(41, 37, 36, 0.08)' }}
+            className="card-white feature-tour-card" 
+            style={{ 
+              border: '1px solid #DDD5C7', 
+              boxShadow: '0 20px 40px rgba(41, 37, 36, 0.08)', 
+              width: '100%', 
+              maxWidth: '100%', 
+              boxSizing: 'border-box',
+              overflow: 'hidden'
+            }}
           >
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '48px', alignItems: 'center' }}>
+            <div className="feature-tour-grid">
               
               {/* Left Content */}
-              <div>
+              <div style={{ minWidth: 0, width: '100%' }}>
                 <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(45, 106, 79, 0.1)', borderRadius: '8px', color: '#2D6A4F', fontSize: '0.78rem', fontWeight: 800, marginBottom: '16px' }}>
                   {activeTab.badge}
                 </div>
 
-                <h3 style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)', fontWeight: 800, color: '#292524', lineHeight: 1.2, marginBottom: '16px' }}>
+                <h3 style={{ fontSize: 'clamp(1.25rem, 3.5vw, 1.95rem)', fontWeight: 800, color: '#292524', lineHeight: 1.25, marginBottom: '16px', overflowWrap: 'break-word', wordBreak: 'break-word' }}>
                   {activeTab.headline}
                 </h3>
 
-                <p style={{ color: '#57534E', fontSize: '1rem', lineHeight: 1.6, marginBottom: '24px', fontWeight: 500 }}>
+                <p style={{ color: '#57534E', fontSize: '0.94rem', lineHeight: 1.6, marginBottom: '24px', fontWeight: 500, overflowWrap: 'break-word' }}>
                   {activeTab.description}
                 </p>
 
@@ -181,10 +195,10 @@ export const FeatureTour: React.FC = () => {
                       transition={{ duration: 0.4, delay: i * 0.08 }}
                       style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}
                     >
-                      <div style={{ marginTop: '3px', color: '#2D6A4F' }}>
+                      <div style={{ marginTop: '3px', color: '#2D6A4F', flexShrink: 0 }}>
                         <FileCheck size={18} />
                       </div>
-                      <span style={{ fontSize: '0.92rem', color: '#292524', fontWeight: 600 }}>{h}</span>
+                      <span style={{ fontSize: '0.88rem', color: '#292524', fontWeight: 600, lineHeight: 1.5, wordBreak: 'break-word' }}>{h}</span>
                     </motion.div>
                   ))}
                 </div>
@@ -194,14 +208,26 @@ export const FeatureTour: React.FC = () => {
               <motion.div 
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                style={{ position: 'relative', borderRadius: '20px', overflow: 'hidden', border: '1px solid #DDD5C7', boxShadow: '0 16px 32px rgba(41, 37, 36, 0.1)', maxHeight: '440px' }}
+                style={{ 
+                  position: 'relative', 
+                  borderRadius: '16px', 
+                  overflow: 'hidden', 
+                  border: '1px solid #DDD5C7', 
+                  boxShadow: '0 12px 28px rgba(41, 37, 36, 0.08)', 
+                  width: '100%', 
+                  maxWidth: '100%',
+                  aspectRatio: '16 / 11',
+                  minHeight: '220px',
+                  maxHeight: '440px'
+                }}
               >
                 <Image 
                   src={activeTab.imageSrc} 
                   alt={activeTab.title} 
-                  width={600} 
-                  height={450} 
-                  style={{ width: '100%', height: 'auto', objectFit: 'cover' }} 
+                  fill
+                  sizes="(max-width: 768px) 100vw, 550px"
+                  style={{ objectFit: 'cover', display: 'block' }} 
+                  priority
                 />
               </motion.div>
 

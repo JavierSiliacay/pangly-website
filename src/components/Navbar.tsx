@@ -25,16 +25,17 @@ export const Navbar: React.FC<NavbarProps> = ({ initialSlots = 0 }) => {
   }, []);
 
   useEffect(() => {
-    const fetchLiveSlots = async () => {
-      try {
-        const res = await fetch('/api/slots');
-        const data = await res.json();
-        if (typeof data.totalClaimed === 'number') {
-          setClaimedSlots(data.totalClaimed);
-        }
-      } catch {}
+    const handleSlotUpdate = (e: Event) => {
+      const customEvent = e as CustomEvent<number>;
+      if (typeof customEvent.detail === 'number') {
+        setClaimedSlots(customEvent.detail);
+      }
     };
-    fetchLiveSlots();
+    window.addEventListener('pangly_slot_update', handleSlotUpdate);
+
+    return () => {
+      window.removeEventListener('pangly_slot_update', handleSlotUpdate);
+    };
   }, []);
 
   return (
@@ -80,7 +81,8 @@ export const Navbar: React.FC<NavbarProps> = ({ initialSlots = 0 }) => {
           <Link href="#interactive-demo" title="Interactive Simulator & Demo" style={{ color: '#57534E', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, transition: 'color 0.2s' }}>Live Demo</Link>
           <Link href="#security" title="Zero-Cloud Security Architecture" style={{ color: '#57534E', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, transition: 'color 0.2s' }}>Security</Link>
           <Link href="#install-guide" title="Android APK Installation Guide" style={{ color: '#57534E', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, transition: 'color 0.2s' }}>Install Guide</Link>
-          <Link href="#faq" title="Frequently Asked Questions" style={{ color: '#57534E', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, transition: 'color 0.2s' }}>FAQ</Link>
+          <Link href="/#faq" title="Frequently Asked Questions" style={{ color: '#57534E', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, transition: 'color 0.2s' }}>FAQ</Link>
+          <Link href="/feedbacks" title="Community Feedback & Suggestions" style={{ color: '#2D6A4F', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 700, transition: 'color 0.2s' }}>Feedbacks</Link>
         </nav>
 
         {/* CTA Slot Action */}
@@ -91,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({ initialSlots = 0 }) => {
           </div>
 
           <motion.div className="desktop-cta" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
-            <Link href="#download-section" className="btn-primary" style={{ padding: '10px 20px', fontSize: '0.875rem' }}>
+            <Link href="/#download-section" className="btn-primary" style={{ padding: '10px 20px', fontSize: '0.875rem' }}>
               <Download size={16} />
               <span>Download APK</span>
             </Link>
@@ -112,13 +114,14 @@ export const Navbar: React.FC<NavbarProps> = ({ initialSlots = 0 }) => {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div style={{ backgroundColor: '#F5F1EB', borderBottom: '1px solid #DDD5C7', padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-          <Link onClick={() => setMobileMenuOpen(false)} href="#features" style={{ color: '#292524', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>Features</Link>
-          <Link onClick={() => setMobileMenuOpen(false)} href="#interactive-demo" style={{ color: '#292524', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>Live Demo</Link>
-          <Link onClick={() => setMobileMenuOpen(false)} href="#security" style={{ color: '#292524', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>Security</Link>
-          <Link onClick={() => setMobileMenuOpen(false)} href="#install-guide" style={{ color: '#292524', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>Install Guide</Link>
-          <Link onClick={() => setMobileMenuOpen(false)} href="#faq" style={{ color: '#292524', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>FAQ</Link>
+          <Link onClick={() => setMobileMenuOpen(false)} href="/#features" style={{ color: '#292524', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>Features</Link>
+          <Link onClick={() => setMobileMenuOpen(false)} href="/#interactive-demo" style={{ color: '#292524', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>Live Demo</Link>
+          <Link onClick={() => setMobileMenuOpen(false)} href="/#security" style={{ color: '#292524', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>Security</Link>
+          <Link onClick={() => setMobileMenuOpen(false)} href="/#install-guide" style={{ color: '#292524', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>Install Guide</Link>
+          <Link onClick={() => setMobileMenuOpen(false)} href="/#faq" style={{ color: '#292524', textDecoration: 'none', fontSize: '1rem', fontWeight: 600 }}>FAQ</Link>
+          <Link onClick={() => setMobileMenuOpen(false)} href="/feedbacks" style={{ color: '#2D6A4F', textDecoration: 'none', fontSize: '1rem', fontWeight: 700 }}>Community Feedback & Suggestions</Link>
           <div style={{ height: '1px', background: '#DDD5C7', margin: '4px 0' }} />
-          <Link onClick={() => setMobileMenuOpen(false)} href="#download-section" className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+          <Link onClick={() => setMobileMenuOpen(false)} href="/#download-section" className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
             <Download size={18} />
             <span>Download APK (v1.3.20)</span>
           </Link>

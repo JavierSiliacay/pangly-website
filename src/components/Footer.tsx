@@ -33,7 +33,8 @@ export const Footer: React.FC = () => {
               <Link href="#interactive-demo" style={{ color: '#57534E', textDecoration: 'none' }}>Live Demo Simulator</Link>
               <Link href="#security" style={{ color: '#57534E', textDecoration: 'none' }}>Security Matrix</Link>
               <Link href="#install-guide" style={{ color: '#57534E', textDecoration: 'none' }}>Installation Guide</Link>
-              <Link href="#faq" style={{ color: '#57534E', textDecoration: 'none' }}>Frequently Asked Questions</Link>
+              <Link href="/#faq" style={{ color: '#57534E', textDecoration: 'none' }}>Frequently Asked Questions</Link>
+              <Link href="/feedbacks" style={{ color: '#2D6A4F', textDecoration: 'none', fontWeight: 700 }}>Community Feedback & Suggestions</Link>
             </div>
           </div>
 
@@ -69,9 +70,9 @@ export const Footer: React.FC = () => {
           {/* Download Direct */}
           <div>
             <h4 style={{ fontSize: '0.95rem', fontWeight: 800, color: '#292524', marginBottom: '16px' }}>Get Pangly</h4>
-            <a href="/api/download" download className="btn-primary" style={{ padding: '12px 20px', fontSize: '0.88rem' }}>
+            <a href="#download-section" className="btn-primary" style={{ padding: '12px 20px', fontSize: '0.88rem' }}>
               <Download size={16} />
-              <span>Direct APK (v1.3.20)</span>
+              <span>Claim Slot & Download</span>
             </a>
             <p style={{ fontSize: '0.75rem', color: '#57534E', marginTop: '10px', fontWeight: 600 }}>
               Android 8.0+ • 226 MB • Safe APK
