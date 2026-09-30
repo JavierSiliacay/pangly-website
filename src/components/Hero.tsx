@@ -205,7 +205,7 @@ export const Hero: React.FC<HeroProps> = ({ initialSlots = 0 }) => {
               transition={{ duration: 0.7, delay: 0.3 }}
               style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', color: '#57534E', lineHeight: 1.6, maxWidth: '540px', marginBottom: '28px', fontWeight: 500 }}
             >
-              The 100% private, offline AI vault built for Philippine IDs, family documents, vehicle maintenance, and passwords. Powered by on-device <strong style={{ color: '#2D6A4F' }}>On-Device AI Engine</strong>. Zero cloud. Zero leaks.
+              The 100% private, offline AI vault built for Philippine IDs, family documents, vehicle maintenance, and passwords. Powered by <strong style={{ color: '#2D6A4F' }}>On-Device AI Engine</strong>. Zero cloud. Zero leaks.
             </motion.p>
 
             {/* 100-User Real Live Early Access Slot Card */}
